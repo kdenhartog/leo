@@ -14,7 +14,7 @@ module.exports = {
             const root = postcss.parse(css);
             const cssAsJs = postcssJs.objectify(root);
 
-            writeFileSync(join(config.buildPath, `${file}.js`), `module.exports = ${JSON.stringify(cssAsJs, null, 2)}`)
+            writeFileSync(join(config.buildPath, "plugins", `_${file}.js`), `module.exports = ${JSON.stringify(cssAsJs, null, 2)}`)
         })
     },
     undo: function (dictionary, config) {

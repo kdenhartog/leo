@@ -26,7 +26,8 @@ module.exports = {
       ],
       actions: [
         "tailwind/copy_static_files",
-        "tailwind/convert_css_to_js"
+        "tailwind/convert_css_to_js",
+        "tailwind/extract_component_styles",
       ]
     },
     css: {

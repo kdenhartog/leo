@@ -121,7 +121,7 @@
     --box-shadow-hover: none;
   }
   .leoButton.isCTA {
-    --bg-default: var(--gradient-gradient-04);
+    --bg: var(--gradient-gradient-04);
   }
 </style>
 
