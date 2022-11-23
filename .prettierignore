@@ -1,0 +1,3 @@
+build/
+web-components/**/react.ts
+web-components/**/*.svelte.d.ts

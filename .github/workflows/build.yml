@@ -31,3 +31,8 @@ jobs:
         id: build-leo
         run: |
           npm run transform-tokens
+
+      - name: Format
+        id: format
+        run: |
+          npm run format-diff
