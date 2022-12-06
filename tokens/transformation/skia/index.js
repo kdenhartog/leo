@@ -10,20 +10,25 @@ StyleDictionary.registerTransformGroup({
 })
 
 const filteredTokens = (dictionary, filterFn) => {
-  let filtered = dictionary.allTokens;
-  if (typeof filterFn === "function") {
-    filtered = dictionary.allTokens.filter(token => filterFn(token))
+  let filtered = dictionary.allTokens
+  if (typeof filterFn === 'function') {
+    filtered = dictionary.allTokens.filter((token) => filterFn(token))
   }
 
-  filtered = filtered.map(tokens => {
+  filtered = filtered.map((tokens) => {
     // convert to hex
-    const value = tokens.value.split(',')
-    .map(s => '0x' + Number(s).toString(16).padStart(2, '0').toUpperCase())
+    const value = tokens.value
+      .split(',')
+      .map((s) => '0x' + Number(s).toString(16).padStart(2, '0').toUpperCase())
     // convert to chromium's pascalCase convention
-    const name = 'k' + tokens.name.split('-')
-      .map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join('')
-      .replace('LightMode', '')
-      .replace('DarkMode', '')
+    const name =
+      'k' +
+      tokens.name
+        .split('-')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join('')
+        .replace('LightMode', '')
+        .replace('DarkMode', '')
     return { ...tokens, name, value }
   })
 
@@ -38,18 +43,24 @@ const filteredTokens = (dictionary, filterFn) => {
 
 StyleDictionary.registerFormat({
   name: 'skia/colors.h',
-  formatter: ({dictionary, options, file}) => {
+  formatter: ({ dictionary, options, file }) => {
     const template = _template(
       fs.readFileSync(__dirname + '/templates/colors.h.template')
-    );
-    
+    )
+
     const groupedTokens = {
       // if you export the prefixes use token.path[0] instead of [1]
-      light: filteredTokens(dictionary, (token) => token.path[2]?.toLowerCase() === 'light-mode'),
-      dark: filteredTokens(dictionary, (token) => token.path[2]?.toLowerCase() === 'dark-mode'),
+      light: filteredTokens(
+        dictionary,
+        (token) => token.path[2]?.toLowerCase() === 'light-mode'
+      ),
+      dark: filteredTokens(
+        dictionary,
+        (token) => token.path[2]?.toLowerCase() === 'dark-mode'
+      ),
       rest: filteredTokens(dictionary)
     }
 
-    return template({ groupedTokens, options, file });
-  }  
+    return template({ groupedTokens, options, file })
+  }
 })

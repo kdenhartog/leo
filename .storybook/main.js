@@ -1,29 +1,29 @@
 const path = require('path')
-const sveltePreprocess = require('svelte-preprocess');
+const sveltePreprocess = require('svelte-preprocess')
 
 module.exports = {
   core: {
-    builder: 'webpack5',
+    builder: 'webpack5'
   },
-  "stories": [
-    "../web-components/**/*.stories.svelte",
-    "../web-components/**/*.stories.js",
+  'stories': [
+    '../web-components/**/*.stories.svelte',
+    '../web-components/**/*.stories.js'
   ],
-  "addons": [
+  'addons': [
     '@storybook/addon-svelte-csf',
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
     '@storybook/preset-scss'
   ],
-  "framework": "@storybook/svelte",
+  'framework': '@storybook/svelte',
   svelteOptions: {
     preprocess: sveltePreprocess({
       postcss: {
         plugins: [require('../postcss/theme')({ useGlobal: true })]
       }
     }),
-    customElement: true,
+    customElement: true
   },
   // svelteOptions: {
   //   preprocess: preprocess(), // or `preprocess: [svelteTS()]` in your case
@@ -36,14 +36,14 @@ module.exports = {
       ...config.resolve,
       alias: {
         ...config.resolve.alias,
-        svelte: path.resolve("node_modules", "svelte"),
+        svelte: path.resolve('node_modules', 'svelte')
       },
       // Make sure we compile stories.svelte files
-      extensions: [...config.resolve.extensions, ".svelte"],
-      mainFields: ["svelte", ...config.resolve.mainFields],
-    };
+      extensions: [...config.resolve.extensions, '.svelte'],
+      mainFields: ['svelte', ...config.resolve.mainFields]
+    }
 
     // Return the altered config
-    return config;
-  },
+    return config
+  }
 }

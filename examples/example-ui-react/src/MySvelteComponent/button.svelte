@@ -6,7 +6,9 @@
   export let button_text: string
   let acted = false
 
-  setTimeout(() => { acted = true}, 1000)
+  setTimeout(() => {
+    acted = true
+  }, 1000)
 
   const dispatch = createEventDispatcher()
 
@@ -18,6 +20,17 @@
   }
 </script>
 
+<!-- 
+  Demonstrate: 
+  - attribute changing
+  - events
+  - child content changing
+  - slots
+-->
+<button class={acted ? 'acted' : ''} on:click={sayHello}
+  >Hefllo world! {button_text} <slot /></button
+>
+
 <style>
   /* Rotation to visually verify it's the same DOM element! */
   button {
@@ -28,11 +41,3 @@
     transform: rotate(180deg);
   }
 </style>
-<!-- 
-  Demonstrate: 
-  - attribute changing
-  - events
-  - child content changing
-  - slots
--->
-<button class="{acted ? 'acted' : ''}" on:click={sayHello}>Hefllo world! {button_text} <slot></slot></button>

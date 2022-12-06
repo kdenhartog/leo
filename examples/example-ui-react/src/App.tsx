@@ -1,7 +1,7 @@
-import * as React from 'react';
-import "../../../build/css/variables.css"
+import * as React from 'react'
+import '../../../build/css/variables.css'
 import LeoButton from '../../../web-components/button/react'
-import styles from './App.module.css';
+import styles from './App.module.css'
 import SvelteReactComponent, { HelloEvent } from './MySvelteComponent/react'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
     alert('react svelte wc hello ' + e.detail.text)
   }
 
-  const [buttonText, setButtonText] = React.useState('I am a LEO Button');
+  const [buttonText, setButtonText] = React.useState('I am a LEO Button')
 
   return (
     <div className={styles['App']}>
@@ -24,13 +24,13 @@ function App() {
         <h1>A React App</h1>
         <label>
           Edit the button text:
-          <input type="text" value={buttonText} onChange={e => setButtonText(e.target.value)} />
+          <input
+            type="text"
+            value={buttonText}
+            onChange={(e) => setButtonText(e.target.value)}
+          />
         </label>
-        <LeoButton
-          kind='primary'
-          size='large'
-          onClick={() => alert('clicked')}
-        >
+        <LeoButton kind="primary" size="large" onClick={() => alert('clicked')}>
           {buttonText}
         </LeoButton>
         <SvelteReactComponent
@@ -41,7 +41,7 @@ function App() {
         </SvelteReactComponent>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
