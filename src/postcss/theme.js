@@ -195,3 +195,4 @@ module.exports = (options) => {
 }
 
 module.exports.postcss = true;
+module.exports.__esModule = true
